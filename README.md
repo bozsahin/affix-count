@@ -13,4 +13,4 @@ examples:
 
 <code>python affcount.py README.md -xes -er file- -fix- </code>
 
-<code> python fn affcount.py -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
+<code> python affcount.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
