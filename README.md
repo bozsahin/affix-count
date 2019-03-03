@@ -1,7 +1,7 @@
 # affix-count
 simple counter of  prefixes, suffixes, and infixes in a text file, with some allomorphy
 
-use as:
+use from command line as:
 
 <code> python affcount.py filename sequence of affixes </code>
 
