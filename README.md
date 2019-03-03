@@ -9,7 +9,7 @@ where <code> filename</code> is the name of the text file, and
 
 <code> sequence of affixes</code> is space-separated prefix, suffix or infix.
 
-<code>affcount2.py</code> is for Python 2, <code>affcount3.py</code> is for Python 3, whatever that mess is.
+<code>affcount2.py</code> is for Python 2, <code>affcount3.py</code> is for Python 3, whatever that mess means in a messy PL.
 
 Use the one you need in the examples below.
 
