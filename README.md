@@ -1,9 +1,13 @@
 # affix-count
 simple counter of  prefixes, suffixes, and infixes in a text or xml file, with some allomorphy
 
-use from command line as:
+For plain text:
 
-<code> python affcount.py filename sequence of affixes </code>
+<code> python affcount2.py filename sequence of affixes </code>
+
+For text in xml files:
+
+<code> python affcount3-xml.py filename sequence of affixes </code>
 
 where <code> filename</code> is the name of the text file, and
 
@@ -11,7 +15,7 @@ where <code> filename</code> is the name of the text file, and
 
 Prefixes end with dash, suffixes start with it, and infixes start and end with it, for example <code>re-, -ness, -bloody-</code>. We remove the dash before we search the forms.
 
-<code>affcount2.py</code> is for Python 2, <code>affcount3.py</code> is for Python 3, whatever that mess means in a messy PL.
+<code>affcount2.py</code> is for Python 2; use <code>affcount3.py</code> for Python 3, whatever that mess means in a messy PL.
 
 Use the one you need in the examples below.
 
