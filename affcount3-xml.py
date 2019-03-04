@@ -1,4 +1,5 @@
 # simple affix count, which you can also use for allomorphy --cem bozsahin, Mar 2019
+# this one is for text in xml files
 
 # argument index 0: this script, index 1: input file, 2-n: affixes
 
@@ -10,7 +11,8 @@
 
 import sys # for interface
 import re  # for affix search
-import string # for cleaning up punctuation
+import string # for cleaning up pun ctuation
+import xml.etree.ElementTree as ET   # for xml processing
 
 class Aff():   # affixes are identified as suffixes like '-ness' or prefixes like 're-'
     # or infixes like '-fuckin-'.  NOTE:  you need the dash or dashes in the name
@@ -28,19 +30,26 @@ for params in sys.argv[2:]:
     aff=Aff(params)
     affixlist.append(aff)
 
+# get the xml file's structured representation
+tree = ET.parse(sys.argv[1])
+root = tree.getroot()
+
+codec = str.maketrans('','',string.punctuation)  # to get rid of punctuation later
+
 #read lines, clean them and split to words, and count
-for line in open(sys.argv[1]):
-    cleanline = line.strip().translate(None,string.punctuation) # standard removal
-    cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line; more punctuation removed
-    cleanline = re.sub('[:;,\.]',' ',cleanline)  # cleaner line; more punctuation removed
-    for word in cleanline.split():
-        for aff in affixlist:
-            if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
-                aff.count += 1
-            if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
-                aff.count += 1
-            if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
-                aff.count += 1
+for el in root:
+    for subel in el:
+        cleanline = subel.text.strip().translate(codec) # standard removal -- python 3 version
+        cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line; more punctuation removed
+        cleanline = re.sub('[,:;\.]',' ',cleanline)  # cleaner line; more punctuation removed before tokenization
+        for word in cleanline.split():
+            for aff in affixlist:
+                if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
+                  aff.count += 1
+                if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
+                  aff.count += 1
+                if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
+                  aff.count += 1
 
 # report
 print("Number of affixes in file: %s" % sys.argv[1])
