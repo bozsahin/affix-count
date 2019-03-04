@@ -27,7 +27,7 @@ examples:
 
 <code>python3 affcount3-xml.py fn.xml -xes -er file- -fix- </code>
 
-<code>python affcount.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
+<code>python affcount2.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
 
 Caveat: These aren't *really* allomorphic counts because we don't do anything with semantics. We just look at the position of
 the "affixal form" in a word. For example, the word `kiler' (cellar) in Turkish is not plural, although -ler looks like a "suffix" and counts as such by the program.
