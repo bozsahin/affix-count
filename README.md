@@ -15,13 +15,17 @@ where <code> filename</code> is the name of the text file, and
 
 Prefixes end with dash, suffixes start with it, and infixes start and end with it, for example <code>re-, -ness, -bloody-</code>. We remove the dash before we search the forms.
 
-<code>affcount2.py</code> is for Python 2; use <code>affcount3.py</code> for Python 3, whatever that mess means in a messy PL.
+<code>affcount2.py</code> is for Python 2; use <code>affcount3.py</code> for Python 3, whatever that means in a messy PL.
 
 Use the one you need in the examples below.
 
 examples:
 
-<code>python affcount.py README.md -xes -er file- -fix- </code>
+<code>python affcount2.py README.md -xes -er file- -fix- </code>
+
+<code>python3 affcount3.py README.md -xes -er file- -fix- </code>
+
+<code>python3 affcount3-xml.py fn.xml -xes -er file- -fix- </code>
 
 <code>python affcount.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
 
