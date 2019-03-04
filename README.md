@@ -9,6 +9,8 @@ where <code> filename</code> is the name of the text file, and
 
 <code> sequence of affixes</code> is space-separated prefix, suffix or infix.
 
+Prefixes end with dash, suffixes start with it, and infixes start and end with it, for example <code>re-, -ness, -bloody-</code>. We remove the dash before we search the forms.
+
 <code>affcount2.py</code> is for Python 2, <code>affcount3.py</code> is for Python 3, whatever that mess means in a messy PL.
 
 Use the one you need in the examples below.
