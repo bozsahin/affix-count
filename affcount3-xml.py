@@ -39,17 +39,19 @@ codec = str.maketrans('','',string.punctuation)  # to get rid of punctuation lat
 #read lines, clean them and split to words, and count
 for el in root:
     for subel in el:
-        cleanline = subel.text.strip()
-        cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
-        cleanline = cleanline.translate(codec) # standard removal -- python 3 version
-        for word in cleanline.split():
-            for aff in affixlist:
-                if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
-                  aff.count += 1
-                if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
-                  aff.count += 1
-                if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
-                  aff.count += 1
+        cleanline = subel.text
+        if cleanline:
+            cleanline = cleanline.strip()
+            cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
+            cleanline = cleanline.translate(codec) # standard removal -- python 3 version
+            for word in cleanline.split():
+                for aff in affixlist:
+                    if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
+                        aff.count += 1
+                    if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
+                        aff.count += 1
+                    if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
+                        aff.count += 1
 
 # report
 print("Number of affixes in file: %s" % sys.argv[1])
