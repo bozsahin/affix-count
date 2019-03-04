@@ -30,9 +30,9 @@ for params in sys.argv[2:]:
 
 #read lines, clean them and split to words, and count
 for line in open(sys.argv[1]):
-    cleanline = line.strip().translate(None,string.punctuation) # standard removal
-    cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line; more punctuation removed
-    cleanline = re.sub('[:;,\.]',' ',cleanline)  # cleaner line; more punctuation removed
+    cleanline = line.strip()
+    cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
+    cleanline = cleanline.translate(None,string.punctuation) # standard removal
     for word in cleanline.split():
         for aff in affixlist:
             if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):

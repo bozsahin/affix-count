@@ -1,5 +1,5 @@
 # affix-count
-simple counter of  prefixes, suffixes, and infixes in a text file, with some allomorphy
+simple counter of  prefixes, suffixes, and infixes in a text or xml file, with some allomorphy
 
 use from command line as:
 
@@ -19,7 +19,7 @@ examples:
 
 <code>python affcount.py README.md -xes -er file- -fix- </code>
 
-<code> python affcount.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
+<code>python affcount.py fn -ler -lar </code>  in a Turkish text file <code>fn</code>, will print allomorphic count of the plural.
 
 Caveat: These aren't *really* allomorphic counts because we don't do anything with semantics. We just look at the position of
 the "affixal form" in a word. For example, the word `kiler' (cellar) in Turkish is not plural, although -ler looks like a "suffix" and counts as such by the program.

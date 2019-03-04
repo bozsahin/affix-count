@@ -39,9 +39,9 @@ codec = str.maketrans('','',string.punctuation)  # to get rid of punctuation lat
 #read lines, clean them and split to words, and count
 for el in root:
     for subel in el:
-        cleanline = subel.text.strip().translate(codec) # standard removal -- python 3 version
-        cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line; more punctuation removed
-        cleanline = re.sub('[,:;\.]',' ',cleanline)  # cleaner line; more punctuation removed before tokenization
+        cleanline = subel.text.strip()
+        cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
+        cleanline = cleanline.translate(codec) # standard removal -- python 3 version
         for word in cleanline.split():
             for aff in affixlist:
                 if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):

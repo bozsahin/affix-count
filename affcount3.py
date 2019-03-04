@@ -32,9 +32,9 @@ codec = str.maketrans('','',string.punctuation) # punctuation map
 
 #read lines, clean them and split to words, and count
 for line in open(sys.argv[1]):
-    cleanline = line.strip().translate(codec) # standard removal -- python 3 version
-    cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line; more punctuation removed
-    cleanline = re.sub('[,:;\.]',' ',cleanline)  # cleaner line; more punctuation removed
+    cleanline = line.strip()
+    cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
+    cleanline=cleanline.translate(codec) # standard removal -- python 3 version
     for word in cleanline.split():
         for aff in affixlist:
             if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
