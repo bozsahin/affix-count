@@ -3,7 +3,7 @@ simple counter of  prefixes, suffixes, and infixes in a text or xml file, with s
 
 For plain text:
 
-<code> python affcount2.py filename sequence of affixes </code>
+<code> python affcount3.py filename sequence of affixes </code>
 
 For text in xml files:
 
