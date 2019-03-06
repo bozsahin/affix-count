@@ -30,27 +30,25 @@ for params in sys.argv[2:]:
     aff=Aff(params)
     affixlist.append(aff)
 
+codec = str.maketrans('','',string.punctuation)  # to get rid of punctuation later
+
 # get the xml file's structured representation
 tree = ET.parse(sys.argv[1])
 root = tree.getroot()
 
-codec = str.maketrans('','',string.punctuation)  # to get rid of punctuation later
-
-#read lines, clean them and split to words, and count
-for el in root:
-    for subel in el:
-        cleanline = subel.text
-        if cleanline:
-            cleanline = re.sub('[^\w\s]',' ',cleanline.strip())  # cleaner line
-            cleanline = cleanline.translate(codec) # standard removal -- python 3 version
-            for word in cleanline.split():
-                for aff in affixlist:
-                    if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
-                        aff.count += 1
-                    if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
-                        aff.count += 1
-                    if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
-                        aff.count += 1
+#read text, clean them and split to words, and count
+cleanline = ''.join(root.itertext())
+cleanline = re.sub('[^\w\s]',' ',cleanline.strip())  # turn them to space
+cleanline = cleanline.translate(codec) # standard removal -- python 3 version
+if cleanline:
+   for word in cleanline.split():
+       for aff in affixlist:
+           if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
+              aff.count += 1
+           if aff.type == "prefix" and re.search('^'+aff.form+'.+',word):
+              aff.count += 1
+           if aff.type == "infix" and re.search('.+'+aff.form+'.+',word):
+              aff.count += 1
 
 # report
 print("Number of affixes in file: %s" % sys.argv[1])
