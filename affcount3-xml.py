@@ -41,8 +41,7 @@ for el in root:
     for subel in el:
         cleanline = subel.text
         if cleanline:
-            cleanline = cleanline.strip()
-            cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
+            cleanline = re.sub('[^\w\s]',' ',cleanline.strip())  # cleaner line
             cleanline = cleanline.translate(codec) # standard removal -- python 3 version
             for word in cleanline.split():
                 for aff in affixlist:
