@@ -30,12 +30,14 @@ for params in sys.argv[2:]:
 
 codec = str.maketrans('','',string.punctuation) # punctuation map
 
+wc=0
 #read lines, clean them and split to words, and count
 for line in open(sys.argv[1]):
     cleanline = line.strip()
     cleanline = re.sub('[^\w\s]',' ',cleanline)  # cleaner line
     cleanline=cleanline.translate(codec) # standard removal -- python 3 version
     for word in cleanline.split():
+        wc += 1
         for aff in affixlist:
             if aff.type == "suffix" and re.search('.+'+aff.form+'$',word):
                 aff.count += 1
@@ -45,7 +47,7 @@ for line in open(sys.argv[1]):
                 aff.count += 1
 
 # report
-print("Number of affixes in file: %s" % sys.argv[1])
+print("Number of affixes in file (%d tokens in text): %s " % (wc,sys.argv[1]))
 for aff in affixlist:
     print("%s : %d" % (aff.name,aff.count))
 
