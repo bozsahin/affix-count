@@ -3,11 +3,11 @@ simple counter of  prefixes, suffixes, and infixes in a text or xml file, with s
 
 For plain text:
 
-<code> python affcount3.py filename sequence of affixes </code>
+<code> python3 affcount3.py filename sequence of affixes </code>
 
 For text in xml files:
 
-<code> python affcount3-xml.py filename sequence of affixes </code>
+<code> python3 affcount3-xml.py filename sequence of affixes </code>
 
 where <code> filename</code> is the name of the text file, and
 
@@ -16,6 +16,7 @@ where <code> filename</code> is the name of the text file, and
 Prefixes end with dash, suffixes start with it, and infixes start and end with it, for example <code>re-, -ness, -bloody-</code>. We remove the dash before we search the forms.
 
 <code>affcount2.py</code> is for Python 2, and <code>affcount3.py</code> for Python 3, whatever that means in a messy PL.
+I assume here that <code>python3</code> calls python 3, and plain <code>python</code> calls python 2. Change them according to your system.
 
 Examples:
 
